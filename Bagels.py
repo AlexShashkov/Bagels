@@ -56,3 +56,6 @@ class Guess():
             return clues
         clues.insert(0, "NG")
         return clues
+
+    def Get(self):
+        return self.number
