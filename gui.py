@@ -26,6 +26,7 @@ class App(tk.Frame):
         self.digits = None
 
         self.inp.bind('<Key-Return>', self.handleInput)
+        self.btn.bind("<Button-1>", self.handleInput)
 
         # Функции при вводе
         self.funcs = {}
@@ -38,15 +39,23 @@ class App(tk.Frame):
         self.funcs[self.status](event)
 
     def getdigits(self, event):
-        self.digits = int(self.inp.get())
-        self.list.insert(tk.END, f"В числе будет {self.digits} знаков. Введи количество попыток.")
-        self.status = "TRIES"
+        try:
+            self.digits = int(self.inp.get())
+            self.list.insert(tk.END, f"В числе будет {self.digits} знаков. Введи количество попыток.")
+            self.status = "TRIES"
+        except ValueError:
+            # Handle the exception
+            self.list.insert(tk.END, f"Not correct number!")
 
     def getTries(self, event):
-        self.max_tries = int(self.inp.get())
-        self.list.insert(tk.END, f"У тебя есть {self.max_tries} попыток. Введи число!")
-        self.Game = Guess(self.digits, self.max_tries)
-        self.status = "GAME"
+        try:
+            self.max_tries = int(self.inp.get())-1
+            self.list.insert(tk.END, f"У тебя есть {self.max_tries} попыток. Введи число!")
+            self.Game = Guess(self.digits, self.max_tries)
+            self.status = "GAME"
+        except ValueError:
+            # Handle the exception
+            self.list.insert(tk.END, f"Not correct number!")
 
     def guess(self, event):
         number = self.inp.get()
