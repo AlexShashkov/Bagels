@@ -50,7 +50,7 @@ class App(tk.Frame):
     def getTries(self, event):
         try:
             self.max_tries = int(self.inp.get())-1
-            self.list.insert(tk.END, f"У тебя есть {self.max_tries} попыток. Введи число!")
+            self.list.insert(tk.END, f"У тебя есть {self.max_tries+1} попыток. Введи число!")
             self.Game = Guess(self.digits, self.max_tries)
             self.status = "GAME"
         except ValueError:
