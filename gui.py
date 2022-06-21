@@ -73,6 +73,8 @@ class App(tk.Frame):
         elif status == True:
             string = "Вы выиграли!"
             self.list.insert(tk.END, string)
+            self.list.insert(tk.END, "Введи сколько знаков должно быть в числе")
+            self.status = "DIGITS"
             pass
         else:
             self.list.insert(tk.END, result[0])
